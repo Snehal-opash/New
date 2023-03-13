@@ -44,8 +44,8 @@ const News = (props) => {
 
   return (
     <>
-      <h1 className="text-center" style={{ margin: "35px 0px" , marginTop:'90px'}}><marquee direction="left" scrollamount="15">
-        News - Top {capitalizeFirstLetter(props.category)} Headlines </marquee> 
+      <h1 className="text-center" style={{ margin: "35px 0px" , marginTop:'90px'}}>
+        News - Top {capitalizeFirstLetter(props.category)} Headlines
       </h1>
       {loading && <Spinner />}
       <InfiniteScroll
