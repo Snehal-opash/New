@@ -8,34 +8,37 @@ const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 const News = (props) => {
-  const [articles,setArticles] =useState([])
-  const [loading, setLoading] = useState([true])
-  const [page, setPage] = useState(1)
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState([true]);
+  const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
-  
 
   const updateNews = async () => {
     props.setProgress(10);
     const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
     setLoading(true);
-    let data = await fetch(url)
+    let data = await fetch(url);
     props.setProgress(30);
-    let parsedData = await data.json() 
+    let parsedData = await data.json();
     props.setProgress(70);
-    setArticles(parsedData.articles)
-    setTotalResults(parsedData.totalResults)
+    setArticles(parsedData.articles);
+    setTotalResults(parsedData.totalResults);
     setLoading(false);
     props.setProgress(100);
-  }
+  };
   useEffect(() => {
     document.title = `${capitalizeFirstLetter(props.category)} - News`;
     updateNews();
     // eslint-disable-next-line
-  }, [])
-  
+  }, []);
+
   async function fetchMoreData() {
     setPage(page + 1);
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page + 1}&pageSize=${props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${
+      props.country
+    }&category=${props.category}&apiKey=${props.apiKey}&page=${
+      page + 1
+    }&pageSize=${props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     setArticles(articles.concat(parsedData.articles));
@@ -44,12 +47,15 @@ const News = (props) => {
 
   return (
     <>
-      <h1 className="text-center" style={{ margin: "35px 0px" , marginTop:'90px'}}>
+      <h1
+        className="text-center"
+        style={{ margin: "35px 0px", marginTop: "90px" }}
+      >
         News - Top {capitalizeFirstLetter(props.category)} Headlines
       </h1>
       {loading && <Spinner />}
       <InfiniteScroll
-        dataLength = {articles.length}
+        dataLength={articles.length}
         next={fetchMoreData}
         hasMore={articles.length !== totalResults}
         loader={<Spinner />}
@@ -60,10 +66,14 @@ const News = (props) => {
               return (
                 <div className="col-md-4" key={element.url}>
                   <NewItem
-                    title={element.title ? element.title.slice(0, 45) : ""}
+                    title={
+                      element.title
+                        ? element.title.slice(0, 45).concat("...")
+                        : ""
+                    }
                     description={
                       element.description
-                        ? element.description.slice(0, 88)
+                        ? element.description.slice(0, 88).concat("...")
                         : ""
                     }
                     imageUrl={element.urlToImage ? element.urlToImage : ""}
