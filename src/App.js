@@ -4,21 +4,7 @@ import News from "./components/News";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDFd_cKUdFcwbOCxYQbFVBf7UyrUzpV-Eg",
-  authDomain: "newsapi-595b0.firebaseapp.com",
-  projectId: "newsapi-595b0",
-  storageBucket: "newsapi-595b0.appspot.com",
-  messagingSenderId: "734471718883",
-  appId: "1:734471718883:web:d3d15842e569eadedc42d6",
-};
-
-// Initialize Firebase
 
 const App = () => {
   const pageSize = 5;
@@ -26,7 +12,6 @@ const App = () => {
   // apiKey = process.env.REACT_APP_NEWS_API
 
   const [progress, setProgress] = useState(0);
-  const app = initializeApp(firebaseConfig);
 
   return (
     <div>
