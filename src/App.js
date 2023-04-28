@@ -1,15 +1,32 @@
-import React, { useState } from 'react'
-import Navbar from './components/Navbar';
-import News from './components/News';
-import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
-import LoadingBar from 'react-top-loading-bar'
+import React, { useState } from "react";
+import Navbar from "./components/Navbar";
+import News from "./components/News";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoadingBar from "react-top-loading-bar";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDFd_cKUdFcwbOCxYQbFVBf7UyrUzpV-Eg",
+  authDomain: "newsapi-595b0.firebaseapp.com",
+  projectId: "newsapi-595b0",
+  storageBucket: "newsapi-595b0.appspot.com",
+  messagingSenderId: "734471718883",
+  appId: "1:734471718883:web:d3d15842e569eadedc42d6",
+};
+
+// Initialize Firebase
 
 const App = () => {
   const pageSize = 5;
-  const apiKey = "1eb2afab58ca4f71b57f3776602d79d2"
+  const apiKey = "1eb2afab58ca4f71b57f3776602d79d2";
   // apiKey = process.env.REACT_APP_NEWS_API
 
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState(0);
+  const app = initializeApp(firebaseConfig);
 
   return (
     <div>
@@ -21,32 +38,51 @@ const App = () => {
             exact
             path="/"
             element={
-              
-              <News setProgress={setProgress} apiKey={apiKey} key="general" pageSize={pageSize} country="in" category="general"/>
-             
+              <News
+                setProgress={setProgress}
+                apiKey={apiKey}
+                key="general"
+                pageSize={pageSize}
+                country="in"
+                category="general"
+              />
             }
           />
           <Route
             exact
             path="/business"
             element={
-              <News setProgress={setProgress} apiKey={apiKey} key="business" pageSize={pageSize} country="in" category="business"/>
+              <News
+                setProgress={setProgress}
+                apiKey={apiKey}
+                key="business"
+                pageSize={pageSize}
+                country="in"
+                category="business"
+              />
             }
           />
-            <Route
-              exact
-              path="/entertainment"
-              element={
-                
-                <News setProgress={setProgress} apiKey={apiKey} key="entertainment" pageSize={pageSize} country="in" category="entertainment"/>
-               
-              }
-            />
+          <Route
+            exact
+            path="/entertainment"
+            element={
+              <News
+                setProgress={setProgress}
+                apiKey={apiKey}
+                key="entertainment"
+                pageSize={pageSize}
+                country="in"
+                category="entertainment"
+              />
+            }
+          />
           <Route
             exact
             path="/enetertainment"
             element={
-              <News setProgress={setProgress} apiKey={apiKey} 
+              <News
+                setProgress={setProgress}
+                apiKey={apiKey}
                 key="entertainment"
                 pageSize={pageSize}
                 country="in"
@@ -58,7 +94,9 @@ const App = () => {
             exact
             path="/general"
             element={
-              <News setProgress={setProgress} apiKey={apiKey} 
+              <News
+                setProgress={setProgress}
+                apiKey={apiKey}
                 key="general"
                 pageSize={pageSize}
                 country="in"
@@ -70,7 +108,9 @@ const App = () => {
             exact
             path="/health"
             element={
-              <News setProgress={setProgress} apiKey={apiKey} 
+              <News
+                setProgress={setProgress}
+                apiKey={apiKey}
                 key="health"
                 pageSize={pageSize}
                 country="in"
@@ -82,7 +122,9 @@ const App = () => {
             exact
             path="/science"
             element={
-              <News setProgress={setProgress} apiKey={apiKey} 
+              <News
+                setProgress={setProgress}
+                apiKey={apiKey}
                 key="science"
                 pageSize={pageSize}
                 country="in"
@@ -94,7 +136,9 @@ const App = () => {
             exact
             path="/sports"
             element={
-              <News setProgress={setProgress} apiKey={apiKey} 
+              <News
+                setProgress={setProgress}
+                apiKey={apiKey}
                 key="sports"
                 pageSize={pageSize}
                 country="in"
@@ -106,7 +150,9 @@ const App = () => {
             exact
             path="/technology"
             element={
-              <News setProgress={setProgress} apiKey={apiKey} 
+              <News
+                setProgress={setProgress}
+                apiKey={apiKey}
                 key="technology"
                 pageSize={pageSize}
                 country="in"
@@ -118,5 +164,5 @@ const App = () => {
       </Router>
     </div>
   );
-}
+};
 export default App;
